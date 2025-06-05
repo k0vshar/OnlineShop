@@ -1,0 +1,47 @@
+﻿@model ProductViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            @await Html.PartialAsync("AdminMenu")
+        </div>
+        <div class="col-md-9">
+            <h3 class="section-title"><span>Добавить продукт</span></h3>
+            <div class="row">
+                <form method="post" asp-controller="Product" asp-action="Add" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <label asp-for="Name">Назва:</label>
+                        <input asp-for="Name" class="form-control" placeholder="Назва товару">
+                        <span asp-validation-for="Name"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cost">Ціна:</label>
+                        <input asp-for="Cost" class="form-control" placeholder="Ціна товару">
+                        <span asp-validation-for="Cost"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Category">Категорія:</label>
+                        <input asp-for="Category" class="form-control" placeholder="Категорія товару">
+                        <span asp-validation-for="Category"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description">Опис товару:</label>
+                        <textarea asp-for="Description" class="form-control" placeholder="Опис товару"></textarea>
+                        <span asp-validation-for="Description"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UploadedFiles">Завантажити зображення:</label>
+                        <input asp-for="UploadedFiles" class="form-control" placeholder="Зображення товару">
+                        <span asp-validation-for="UploadedFiles"></span>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-block mt-3">
+                        <button class="btn btn-primary" type="submit">Сохранить</button>
+                        <a class="btn btn-warning" role="button" asp-controller="Product" asp-action="Index">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
