@@ -35,7 +35,7 @@ namespace OnlineShopWebApp.Controllers
             _userViewModel = userViewModel;
     }
 
-        public async Task<IActionResult> Index(int? categoryId)
+        public async Task<IActionResult> Details(int? categoryId)
         {
             var products = await _productStorage.GetAllAsync(); 
 
@@ -46,7 +46,7 @@ namespace OnlineShopWebApp.Controllers
 
             var categories = _categoryStorage.GetAll(); // синхронно, если метод не async
 
-            var model = new GoodsListViewModel
+            var model = new ProductViewModel
             {
                 Products = products,
                 Categories = categories.ToList(),
@@ -58,7 +58,7 @@ namespace OnlineShopWebApp.Controllers
 
 
 
-        public async Task<IActionResult> Details(Guid productId)
+        public async Task<IActionResult> Index(Guid productId)
         {
             var httpClient = _httpClientFactory.CreateClient("ReviewWebAPI");
             var reviews = await httpClient.GetFromJsonAsync<List<ReviewViewModel>>($"/Review/GetAllByProductId?productId={productId}") ?? new List<ReviewViewModel>();
